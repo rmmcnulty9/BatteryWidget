@@ -3,8 +3,13 @@
     <dimen name="widget_margin">2dp</dimen>
     <dimen name="box_height">80dp</dimen>
     <dimen name="box_width">120dp</dimen>
-    <dimen name="box_border_width">4dp</dimen>
     
-    <dimen name="box_value_height">72dp</dimen>
-    <dimen name="box_value_width">112dp</dimen>
+    <dimen name="box_border_width">1dp</dimen>
+    <color name="box_border_color">#ffffffff</color>
+    
+    <dimen name="box_value_height">78dp</dimen>
+    <dimen name="box_value_width">118dp</dimen>
+    
+    <dimen name="indicator_height">16dp</dimen>
+    <dimen name="indicator_width">28dp</dimen>
 </resources>

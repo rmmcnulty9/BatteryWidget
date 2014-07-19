@@ -17,7 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_marginRight="-4dp"
+        android:layout_marginRight="-1dp"
         android:layout_toLeftOf="@+id/battery"
         android:src="@drawable/battery_nub" />
 
@@ -41,5 +41,14 @@
         android:textColor="#eeeeee"
         android:textSize="20sp"
         android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/charging_indicator"
+        android:layout_width="@dimen/indicator_width"
+        android:layout_height="@dimen/indicator_height"
+        android:layout_alignBottom="@+id/box_value"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="6dp"
+        android:background="@android:color/white" />
 
 </RelativeLayout>

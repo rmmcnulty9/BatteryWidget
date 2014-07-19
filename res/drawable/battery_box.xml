@@ -8,7 +8,7 @@
     
     <stroke
         android:width="@dimen/box_border_width"
-        android:color="#ee222222" />
+        android:color="@color/box_border_color" />
     
     <corners
         android:radius="8dp" />

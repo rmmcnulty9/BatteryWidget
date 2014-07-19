@@ -7,15 +7,15 @@
         android:height="20dp" />
     
     <stroke
-        android:width="4dp"
-        android:color="#ee222222" />
+        android:width="@dimen/box_border_width"
+        android:color="@color/box_border_color" />
     
     
     <corners
         android:radius="1dp" />
     
     <solid 
-        android:color="#ee222222"/>
+        android:color="@color/box_border_color"/>
 
 </shape>
 
