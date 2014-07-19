@@ -4,11 +4,13 @@
     <dimen name="box_height">80dp</dimen>
     <dimen name="box_width">120dp</dimen>
     
-    <dimen name="box_border_width">1dp</dimen>
-    <color name="box_border_color">#ffffffff</color>
+    <dimen name="box_border_width">2dp</dimen>
+    <color name="box_border_color">#ff303030</color>
     
-    <dimen name="box_value_height">78dp</dimen>
-    <dimen name="box_value_width">118dp</dimen>
+    <dimen name="box_value_height">76dp</dimen>
+    <dimen name="box_value_width">116dp</dimen>
+    
+    <dimen name="box_value_border_radius">6dp</dimen>
     
     <dimen name="indicator_height">16dp</dimen>
     <dimen name="indicator_width">28dp</dimen>

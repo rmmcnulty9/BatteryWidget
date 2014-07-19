@@ -12,12 +12,14 @@ import android.content.IntentFilter;
 import android.os.BatteryManager;
 import android.os.SystemClock;
 import android.util.Log;
+import android.view.View;
 import android.widget.RemoteViews;
 
 
 public class BatteryWidgetProvider extends AppWidgetProvider {
 	protected static final String UPDATE = "mcnulty.apps.batterywidget.UPDATE";
-	private int m_level;
+	private int m_level = 100;
+	private boolean m_showCharging = false;
 	
 	@Override
 	public void onEnabled(Context context) {
@@ -33,25 +35,11 @@ public class BatteryWidgetProvider extends AppWidgetProvider {
 		context.stopService(new Intent(context, ScreenService.class));
 		toggleAlarm(context, false);
 	}
-	
-	public static void toggleAlarm(Context context, boolean turnOn) {
-		AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-		Intent intent = new Intent(UPDATE);
-		PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
-	 
-		if (turnOn) { // Add extra 1 sec because sometimes ACTION_BATTERY_CHANGED is called after the first alarm
-			alarmManager.setInexactRepeating(AlarmManager.ELAPSED_REALTIME, SystemClock.elapsedRealtime() + 1000, 300 * 1000, pendingIntent);
-			Log.w("WIDGET","Alarm set");
-		} else {
-			alarmManager.cancel(pendingIntent);
-			Log.w("WIDGET","Alarm disabled");
-		}
-	}
 
 	@Override
 	 public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
 		
-		getBatteryLevel(context);
+		getBatteryInfo(context);
 		
         for(int widgetId : appWidgetIds) {
         	updateWidget(context, appWidgetManager, widgetId);
@@ -69,54 +57,84 @@ public class BatteryWidgetProvider extends AppWidgetProvider {
 		}
 	}
 	
-	public void getBatteryLevel(Context context) {
+	public void getBatteryInfo(Context context) {
 
 		Intent batteryIntent = context.getApplicationContext().registerReceiver(null, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
 	 
 		int level = batteryIntent.getIntExtra(BatteryManager.EXTRA_LEVEL, 0);
 		int scale = batteryIntent.getIntExtra(BatteryManager.EXTRA_SCALE, 100);
 		m_level = level * 100 / scale;
-		Log.e("WIDGET", "UPDATE --> " + m_level);
+		
+		int status = batteryIntent.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
+
+		m_showCharging = BatteryManager.BATTERY_STATUS_CHARGING == status ? true : false;
+		
+		Log.e("WIDGET", "UPDATE --> " + m_level + " " + m_showCharging);
 	}
 	
 	public void updateWidget(Context context, AppWidgetManager appWidgetManager, int widgetId ) {
 
         RemoteViews view = new RemoteViews(context.getPackageName(), R.layout.battery_widget_layout);
+        //Update percentage
         view.setTextViewText(R.id.value, m_level + "%");
-        int resourceId = getDrawableResourceId();
+        //Update background
+        int resourceId = getDrawableResourceId(m_level);
         view.setImageViewResource(R.id.box_value, resourceId);
+        //Update charging indicator
+        int state = View.INVISIBLE;
+        if(m_showCharging)
+        	state = View.VISIBLE;
+        view.setInt(R.id.charging_indicator, "setVisibility", state);
         appWidgetManager.updateAppWidget(widgetId, view);
+	}	
+
+	/*
+	 * Static methods
+	 */
+	
+	public static void toggleAlarm(Context context, boolean turnOn) {
+		AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+		Intent intent = new Intent(UPDATE);
+		PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
+	 
+		if (turnOn) { // Add extra 1 sec because sometimes ACTION_BATTERY_CHANGED is called after the first alarm
+			alarmManager.setInexactRepeating(AlarmManager.ELAPSED_REALTIME, SystemClock.elapsedRealtime() + 1000, 300 * 1000, pendingIntent);
+			Log.w("WIDGET","Alarm set");
+		} else {
+			alarmManager.cancel(pendingIntent);
+			Log.w("WIDGET","Alarm disabled");
+		}
 	}
+	
+	static private int getDrawableResourceId(int level) {
+		if(level > 90) {
+            return R.drawable.color_22aa00;
+        }
+        if(level > 80) {
+            return R.drawable.color_44aa00;
+        }
+        if(level > 70) {
+            return R.drawable.color_66aa00;
+        }
+        if(level > 60) {
+            return R.drawable.color_88aa00;
+        }
+        if(level > 50) {
+            return R.drawable.color_aaaa00;
+        }
+        if(level > 40) {
+            return R.drawable.color_aa8800;
+        }
+        if(level > 30) {
+            return R.drawable.color_aa6600;
+        }
+        if(level > 20) {
+            return R.drawable.color_aa4400;
+        }
+        if(level > 10) {
+            return R.drawable.color_aa2200;
+        }
 
-	private int getDrawableResourceId() {
-		if(m_level > 90) {
-            return R.drawable.color_7722aa00;
-        }
-        if(m_level > 80) {
-            return R.drawable.color_7744aa00;
-        }
-        if(m_level > 70) {
-            return R.drawable.color_7766aa00;
-        }
-        if(m_level > 60) {
-            return R.drawable.color_7788aa00;
-        }
-        if(m_level > 50) {
-            return R.drawable.color_77aaaa00;
-        }
-        if(m_level > 40) {
-            return R.drawable.color_77aa8800;
-        }
-        if(m_level > 30) {
-            return R.drawable.color_77aa6600;
-        }
-        if(m_level > 20) {
-            return R.drawable.color_77aa4400;
-        }
-        if(m_level > 10) {
-            return R.drawable.color_77aa2200;
-        }
-
-        return R.drawable.color_77aa0000;
+        return R.drawable.color_aa0000;
 	}
 }

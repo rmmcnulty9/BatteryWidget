@@ -7,8 +7,8 @@
         android:height="@dimen/box_value_height" />
     
     <corners
-        android:radius="4dp" />
+        android:radius="@dimen/box_value_border_radius" />
     
     <solid 
-        android:color="#7788aa00" />
+        android:color="#ccaa8800" />
 </shape>
