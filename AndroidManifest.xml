@@ -23,7 +23,7 @@
 		               android:resource="@xml/battery_widget_info" />
 		</receiver>
 		
-        <service android:name="mcnulty.apps.batterywidget.ScreenService" />
+        <service android:name="mcnulty.apps.batterywidget.BatteryService" />
     </application>
 
 </manifest>

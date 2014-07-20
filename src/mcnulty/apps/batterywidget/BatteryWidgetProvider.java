@@ -18,28 +18,28 @@ import android.widget.RemoteViews;
 
 public class BatteryWidgetProvider extends AppWidgetProvider {
 	protected static final String UPDATE = "mcnulty.apps.batterywidget.UPDATE";
+	protected static final String UPDATE_EXTRA = "mcnulty.apps.batterywidget.UPDATE_EXTRA";
 	private int m_level = 100;
 	private boolean m_showCharging = false;
 	
 	@Override
 	public void onEnabled(Context context) {
-		context.startService(new Intent(context, ScreenService.class));
+		context.startService(new Intent(context, BatteryService.class));
 		AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
 		int[] appWidgetIds = appWidgetManager.getAppWidgetIds(new ComponentName(context, this.getClass()));
 		this.onUpdate(context, appWidgetManager, appWidgetIds);
+		fireUpdateNow(context);
 		toggleAlarm(context, true);
 	}
 
 	@Override
 	public void onDisabled(Context context) {
-		context.stopService(new Intent(context, ScreenService.class));
+		context.stopService(new Intent(context, BatteryService.class));
 		toggleAlarm(context, false);
 	}
 
 	@Override
 	 public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
-		
-		getBatteryInfo(context);
 		
         for(int widgetId : appWidgetIds) {
         	updateWidget(context, appWidgetManager, widgetId);
@@ -53,13 +53,16 @@ public class BatteryWidgetProvider extends AppWidgetProvider {
 		if (intent.getAction().equals(UPDATE)) {
 			AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
 			int[] appWidgetIds = appWidgetManager.getAppWidgetIds(new ComponentName(context, this.getClass()));
+			
+			m_showCharging = intent.getBooleanExtra(UPDATE_EXTRA, false);
+			
+			Intent batteryIntent = context.getApplicationContext().registerReceiver(null, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
+			getBatteryInfo(context, batteryIntent);
 			this.onUpdate(context, appWidgetManager, appWidgetIds);
 		}
 	}
 	
-	public void getBatteryInfo(Context context) {
-
-		Intent batteryIntent = context.getApplicationContext().registerReceiver(null, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
+	public void getBatteryInfo(Context context, Intent batteryIntent) {
 	 
 		int level = batteryIntent.getIntExtra(BatteryManager.EXTRA_LEVEL, 0);
 		int scale = batteryIntent.getIntExtra(BatteryManager.EXTRA_SCALE, 100);
@@ -92,11 +95,28 @@ public class BatteryWidgetProvider extends AppWidgetProvider {
 	 * Static methods
 	 */
 	
+	public static void fireUpdateNowWithExtra(Context context, boolean extra_value) {
+		AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+		Intent intent = new Intent(UPDATE);
+		intent.putExtra(UPDATE_EXTRA, extra_value);
+		PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
+		alarmManager.set(AlarmManager.ELAPSED_REALTIME, 0, pendingIntent);
+		Log.w("WIDGET","Fire Now");
+	}
+	
+	public static void fireUpdateNow(Context context) {
+		AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+		Intent intent = new Intent(UPDATE);
+		PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
+		alarmManager.set(AlarmManager.ELAPSED_REALTIME, 0, pendingIntent);
+		Log.w("WIDGET","Fire Now");
+	}
+	
 	public static void toggleAlarm(Context context, boolean turnOn) {
 		AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 		Intent intent = new Intent(UPDATE);
 		PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
-	 
+		fireUpdateNow(context);
 		if (turnOn) { // Add extra 1 sec because sometimes ACTION_BATTERY_CHANGED is called after the first alarm
 			alarmManager.setInexactRepeating(AlarmManager.ELAPSED_REALTIME, SystemClock.elapsedRealtime() + 1000, 300 * 1000, pendingIntent);
 			Log.w("WIDGET","Alarm set");
