@@ -19,7 +19,7 @@ public class BatteryService extends Service {
 
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
-
+		Log.w("WIDGET", "Starting Battery Service!");
 		registerReceivers();
 		return super.onStartCommand(intent, flags, startId);
 	}

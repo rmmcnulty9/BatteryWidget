@@ -24,18 +24,28 @@ public class BatteryWidgetProvider extends AppWidgetProvider {
 	
 	@Override
 	public void onEnabled(Context context) {
+		Log.w("WIDGET", "Enabled widget");
 		context.startService(new Intent(context, BatteryService.class));
 		AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
 		int[] appWidgetIds = appWidgetManager.getAppWidgetIds(new ComponentName(context, this.getClass()));
 		this.onUpdate(context, appWidgetManager, appWidgetIds);
 		fireUpdateNow(context);
 		toggleAlarm(context, true);
+		super.onEnabled(context);
+	}
+
+	@Override
+	public void onDeleted(Context context, int[] appWidgetIds) {
+		Log.w("WIDGET", "Deleted widget");
+		super.onDeleted(context, appWidgetIds);
 	}
 
 	@Override
 	public void onDisabled(Context context) {
+		Log.w("WIDGET", "Disabled widget");
 		context.stopService(new Intent(context, BatteryService.class));
 		toggleAlarm(context, false);
+		super.onDisabled(context);
 	}
 
 	@Override
@@ -76,7 +86,7 @@ public class BatteryWidgetProvider extends AppWidgetProvider {
 	}
 	
 	public void updateWidget(Context context, AppWidgetManager appWidgetManager, int widgetId ) {
-
+		Log.w("WIDGET", "Updating widget now... " + m_level + " " + m_showCharging);
         RemoteViews view = new RemoteViews(context.getPackageName(), R.layout.battery_widget_layout);
         //Update percentage
         view.setTextViewText(R.id.value, m_level + "%");

@@ -14,9 +14,10 @@
         
         <receiver android:name="mcnulty.apps.batterywidget.BatteryWidgetProvider" >
 		    <intent-filter>
-		        <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-		        <action android:name="android.appwidget.action.APPWIDGET_ENABLED" />
-		        <action android:name="android.appwidget.action.APPWIDGET_DISABLED" />
+			    <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+			    <action android:name="android.appwidget.action.APPWIDGET_ENABLED" />
+			    <action android:name="android.appwidget.action.APPWIDGET_DELETED" />
+			    <action android:name="android.appwidget.action.APPWIDGET_DISABLED" />  
 		        <action android:name="mcnulty.apps.batterywidget.UPDATE" />
 		    </intent-filter>
 		    <meta-data android:name="android.appwidget.provider"
