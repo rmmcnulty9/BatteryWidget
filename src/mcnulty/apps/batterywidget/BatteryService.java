@@ -37,18 +37,18 @@ public class BatteryService extends Service {
 				String action = intent.getAction();
 				
 				Log.w("WIDGET", intent.getAction());
-				Notifier.notify(context, action);
+				// Notifier.notify(context, action);
 				
 				if(action.equals(Intent.ACTION_SCREEN_ON) || action.equals(Intent.ACTION_USER_PRESENT))
-					BatteryWidgetProvider.toggleAlarm(context, true);
+					RingBatteryWidgetProvider.toggleAlarm(context, true);
 				else if(action.equals(Intent.ACTION_SCREEN_OFF))
-					BatteryWidgetProvider.toggleAlarm(context, false);
+					RingBatteryWidgetProvider.toggleAlarm(context, false);
 				else if(action.equals(Intent.ACTION_POWER_CONNECTED))
-					BatteryWidgetProvider.fireUpdateNowWithExtra(context, true);
+					RingBatteryWidgetProvider.fireUpdateNowWithExtra(context, true);
 				else if(action.equals(Intent.ACTION_POWER_DISCONNECTED))
-					BatteryWidgetProvider.fireUpdateNowWithExtra(context, true);
+					RingBatteryWidgetProvider.fireUpdateNowWithExtra(context, true);
 				else if(action.equals(Intent.ACTION_BATTERY_CHANGED))
-					BatteryWidgetProvider.fireUpdateNow(context);
+					RingBatteryWidgetProvider.fireUpdateNow(context);
 				else
 					Log.e("WIDGET", "Intent not supported: " + action);
 			}

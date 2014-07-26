@@ -3,13 +3,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="oval"
 	android:useLevel="false">
-    
 
    <solid 
-       android:color="#99222222"/>
+       android:color="#ee22aa00"/>
 
    <size 
-       android:width="90dp"
-       android:height="90dp"/>
+       android:width="@dimen/ring_value_width"
+       android:height="@dimen/ring_value_height"/>
     
 </shape>

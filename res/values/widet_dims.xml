@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- BOX -->
     <dimen name="widget_margin">2dp</dimen>
     <dimen name="box_height">80dp</dimen>
     <dimen name="box_width">120dp</dimen>
@@ -12,6 +13,21 @@
     
     <dimen name="box_value_border_radius">6dp</dimen>
     
+    <!-- INDICATOR -->
     <dimen name="indicator_height">16dp</dimen>
     <dimen name="indicator_width">28dp</dimen>
+    
+    <!-- RING -->
+    
+    <dimen name="ring_height">80dp</dimen>
+    <dimen name="ring_width">80dp</dimen>
+    
+    <dimen name="ring_border_width">2dp</dimen>
+    <color name="ring_border_color">#ff303030</color>
+    
+    <dimen name="ring_value_height">76dp</dimen>
+    <dimen name="ring_value_width">76dp</dimen>
+
+    <dimen name="ring_radius">38dp</dimen>
+    <dimen name="ring_text_size">20sp</dimen>
 </resources>

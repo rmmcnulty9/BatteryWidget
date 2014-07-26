@@ -2,16 +2,17 @@
 <shape 
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="ring"
-	android:innerRadius="45dp"
-	android:thickness="10dp"
-	android:useLevel="false">
+    android:innerRadius="@dimen/ring_radius"
+    android:thickness="@dimen/ring_border_width"
+    android:useLevel="false">
     
 
-   <solid 
-       android:color="#eeeeee"/>
-
-   <size 
-       android:width="120dp"
-        android:height="120dp"/>
+    <size
+        android:width="@dimen/ring_width"
+        android:height="@dimen/ring_height" />
+    
+    <stroke
+        android:width="@dimen/ring_border_width"
+        android:color="@color/ring_border_color" />
     
 </shape>

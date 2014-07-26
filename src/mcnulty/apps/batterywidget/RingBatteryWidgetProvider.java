@@ -9,6 +9,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.os.BatteryManager;
 import android.os.SystemClock;
 import android.util.Log;
@@ -16,15 +17,17 @@ import android.view.View;
 import android.widget.RemoteViews;
 
 
-public class BatteryWidgetProvider extends AppWidgetProvider {
+public class RingBatteryWidgetProvider extends AppWidgetProvider {
 	protected static final String UPDATE = "mcnulty.apps.batterywidget.UPDATE";
 	protected static final String UPDATE_EXTRA = "mcnulty.apps.batterywidget.UPDATE_EXTRA";
+
 	private int m_level = 100;
 	private boolean m_showCharging = false;
 	
 	@Override
 	public void onEnabled(Context context) {
 		Log.w("WIDGET", "Enabled widget");
+		
 		context.startService(new Intent(context, BatteryService.class));
 		AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
 		int[] appWidgetIds = appWidgetManager.getAppWidgetIds(new ComponentName(context, this.getClass()));
@@ -87,7 +90,7 @@ public class BatteryWidgetProvider extends AppWidgetProvider {
 	
 	public void updateWidget(Context context, AppWidgetManager appWidgetManager, int widgetId ) {
 		Log.w("WIDGET", "Updating widget now... " + m_level + " " + m_showCharging);
-        RemoteViews view = new RemoteViews(context.getPackageName(), R.layout.battery_widget_box_layout);
+        RemoteViews view = new RemoteViews(context.getPackageName(), R.layout.battery_widget_ring_layout);
         //Update percentage
         view.setTextViewText(R.id.value, m_level + "%");
         //Update background
@@ -137,34 +140,35 @@ public class BatteryWidgetProvider extends AppWidgetProvider {
 	}
 	
 	static private int getDrawableResourceId(int level) {
+		
 		if(level > 90) {
-            return R.drawable.color_22aa00;
+            return R.drawable.ring_color_22aa00;
         }
         if(level > 80) {
-            return R.drawable.color_44aa00;
+            return R.drawable.ring_color_44aa00;
         }
         if(level > 70) {
-            return R.drawable.color_66aa00;
+            return R.drawable.ring_color_66aa00;
         }
         if(level > 60) {
-            return R.drawable.color_88aa00;
+            return R.drawable.ring_color_88aa00;
         }
         if(level > 50) {
-            return R.drawable.color_aaaa00;
+            return R.drawable.ring_color_aaaa00;
         }
         if(level > 40) {
-            return R.drawable.color_aa8800;
+            return R.drawable.ring_color_aa8800;
         }
         if(level > 30) {
-            return R.drawable.color_aa6600;
+            return R.drawable.ring_color_aa6600;
         }
         if(level > 20) {
-            return R.drawable.color_aa4400;
+            return R.drawable.ring_color_aa4400;
         }
         if(level > 10) {
-            return R.drawable.color_aa2200;
+            return R.drawable.ring_color_aa2200;
         }
 
-        return R.drawable.color_aa0000;
+        return R.drawable.ring_color_aa0000;
 	}
 }

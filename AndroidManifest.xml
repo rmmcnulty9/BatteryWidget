@@ -12,7 +12,7 @@
         android:label="@string/app_name" >
         
         
-        <receiver android:name="mcnulty.apps.batterywidget.BatteryWidgetProvider" >
+        <receiver android:name="mcnulty.apps.batterywidget.RingBatteryWidgetProvider" >
 		    <intent-filter>
 			    <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
 			    <action android:name="android.appwidget.action.APPWIDGET_ENABLED" />

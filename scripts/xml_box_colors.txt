@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android" 
+    android:shape="rectangle">
+    
+    <size
+        android:width="@dimen/box_value_width"
+        android:height="@dimen/box_value_height" />
+    
+    <corners
+        android:radius="@dimen/box_value_border_radius" />
+    
+    <solid 
+        android:color="#ccaa0000" />
+</shape>
+----------------------------------------------------------------
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android" 
+    android:shape="rectangle">
+    
+    <size
+        android:width="@dimen/box_value_width"
+        android:height="@dimen/box_value_height" />
+    
+    <corners
+        android:radius="@dimen/box_value_border_radius" />
+    
+    <solid 
+        android:color="#ccaa2200" />
+</shape>
+----------------------------------------------------------------
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android" 
+    android:shape="rectangle">
+    
+    <size
+        android:width="@dimen/box_value_width"
+        android:height="@dimen/box_value_height" />
+    
+    <corners
+        android:radius="@dimen/box_value_border_radius" />
+    
+    <solid 
+        android:color="#ccaa4400" />
+</shape>
+----------------------------------------------------------------
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android" 
+    android:shape="rectangle">
+    
+    <size
+        android:width="@dimen/box_value_width"
+        android:height="@dimen/box_value_height" />
+    
+    <corners
+        android:radius="@dimen/box_value_border_radius" />
+    
+    <solid 
+        android:color="#ccaa6600" />
+</shape>
+----------------------------------------------------------------
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android" 
+    android:shape="rectangle">
+    
+    <size
+        android:width="@dimen/box_value_width"
+        android:height="@dimen/box_value_height" />
+    
+    <corners
+        android:radius="@dimen/box_value_border_radius" />
+    
+    <solid 
+        android:color="#ccaa8800" />
+</shape>
+----------------------------------------------------------------
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android" 
+    android:shape="rectangle">
+    
+    <size
+        android:width="@dimen/box_value_width"
+        android:height="@dimen/box_value_height" />
+    
+    <corners
+        android:radius="@dimen/box_value_border_radius" />
+    
+    <solid 
+        android:color="#ccaaaa00" />
+</shape>
+----------------------------------------------------------------
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android" 
+    android:shape="rectangle">
+    
+    <size
+        android:width="@dimen/box_value_width"
+        android:height="@dimen/box_value_height" />
+    
+    <corners
+        android:radius="@dimen/box_value_border_radius" />
+    
+    <solid 
+        android:color="#cc88aa00" />
+</shape>
+----------------------------------------------------------------
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android" 
+    android:shape="rectangle">
+    
+    <size
+        android:width="@dimen/box_value_width"
+        android:height="@dimen/box_value_height" />
+    
+    <corners
+        android:radius="@dimen/box_value_border_radius" />
+    
+    <solid 
+        android:color="#cc66aa00" />
+</shape>
+----------------------------------------------------------------
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android" 
+    android:shape="rectangle">
+    
+    <size
+        android:width="@dimen/box_value_width"
+        android:height="@dimen/box_value_height" />
+    
+    <corners
+        android:radius="@dimen/box_value_border_radius" />
+    
+    <solid 
+        android:color="#cc44aa00" />
+</shape>
+----------------------------------------------------------------
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android" 
+    android:shape="rectangle">
+    
+    <size
+        android:width="@dimen/box_value_width"
+        android:height="@dimen/box_value_height" />
+    
+    <corners
+        android:radius="@dimen/box_value_border_radius" />
+    
+    <solid 
+        android:color="#cc22aa00" />
+</shape>
+----------------------------------------------------------------
+

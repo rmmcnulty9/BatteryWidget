@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/widget_margin" >
+    
+    <ImageView
+        android:id="@+id/battery"
+        android:layout_width="@dimen/box_width"
+        android:layout_height="@dimen/box_height"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/battery_box" />
+
+    <ImageView
+        android:id="@+id/battery_nub"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="-2dp"
+        android:layout_toLeftOf="@+id/battery"
+        android:src="@drawable/battery_boxnub" />
+
+    <ImageView
+        android:id="@+id/box_value"
+        android:layout_width="@dimen/box_value_width"
+        android:layout_height="@dimen/box_value_height"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_margin="@dimen/box_border_width"
+        android:src="@drawable/ring_color_22aa00" />
+
+    <TextView
+        android:id="@+id/value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_margin="20dp"
+        android:text="100%"
+        android:textColor="#eeeeee"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/charging_indicator"
+        android:layout_width="@dimen/indicator_width"
+        android:layout_height="@dimen/indicator_height"
+        android:layout_alignBottom="@+id/box_value"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="6dp"
+        android:src="@drawable/charging" />
+
+</RelativeLayout>
