@@ -9,62 +9,62 @@ import android.os.IBinder;
 import android.util.Log;
 
 public class BatteryService extends Service {
-	
-	BroadcastReceiver updateReceiver;
-	
-	@Override
-	public IBinder onBind(Intent arg0) {
-		return null;
-	}
+    
+    BroadcastReceiver updateReceiver;
+    
+    @Override
+    public IBinder onBind(Intent arg0) {
+        return null;
+    }
 
-	@Override
-	public int onStartCommand(Intent intent, int flags, int startId) {
-		Log.w("WIDGET", "Starting Battery Service!");
-		registerReceivers();
-		return super.onStartCommand(intent, flags, startId);
-	}
-	
-	@Override
-	public void onDestroy() {
-		unregisterReceiver(updateReceiver);
-	}
-	
-	private void registerReceivers() {
-		updateReceiver = new BroadcastReceiver() {
-	 
-			@Override
-			public void onReceive(Context context, Intent intent) {
-				String action = intent.getAction();
-				
-				Log.w("WIDGET", intent.getAction());
-				// Notifier.notify(context, action);
-				
-				if(action.equals(Intent.ACTION_SCREEN_ON) || action.equals(Intent.ACTION_USER_PRESENT))
-					RingBatteryWidgetProvider.toggleAlarm(context, true);
-				else if(action.equals(Intent.ACTION_SCREEN_OFF))
-					RingBatteryWidgetProvider.toggleAlarm(context, false);
-				else if(action.equals(Intent.ACTION_POWER_CONNECTED))
-					RingBatteryWidgetProvider.fireUpdateNowWithExtra(context, true);
-				else if(action.equals(Intent.ACTION_POWER_DISCONNECTED))
-					RingBatteryWidgetProvider.fireUpdateNowWithExtra(context, true);
-				else if(action.equals(Intent.ACTION_BATTERY_CHANGED))
-					RingBatteryWidgetProvider.fireUpdateNow(context);
-				else
-					Log.e("WIDGET", "Intent not supported: " + action);
-			}
-	 
-		};
-		
-		IntentFilter filter = new IntentFilter();
-		filter.addAction(Intent.ACTION_SCREEN_ON);
-		filter.addAction(Intent.ACTION_SCREEN_OFF);
-		filter.addAction(Intent.ACTION_USER_PRESENT);
-		
-		filter.addAction(Intent.ACTION_POWER_CONNECTED);
-		filter.addAction(Intent.ACTION_POWER_DISCONNECTED);
-//		filter.addAction(Intent.ACTION_BATTERY_CHANGED);
-		
-		registerReceiver(updateReceiver, filter);
-	}
-	
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        Log.w("WIDGET", "Starting Battery Service!");
+        registerReceivers();
+        return super.onStartCommand(intent, flags, startId);
+    }
+    
+    @Override
+    public void onDestroy() {
+        unregisterReceiver(updateReceiver);
+    }
+    
+    private void registerReceivers() {
+        updateReceiver = new BroadcastReceiver() {
+     
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                String action = intent.getAction();
+                
+                Log.w("WIDGET", intent.getAction());
+                // Notifier.notify(context, action);
+                
+                if(action.equals(Intent.ACTION_SCREEN_ON) || action.equals(Intent.ACTION_USER_PRESENT))
+                    RingBatteryWidgetProvider.toggleAlarm(context, true);
+                else if(action.equals(Intent.ACTION_SCREEN_OFF))
+                    RingBatteryWidgetProvider.toggleAlarm(context, false);
+                else if(action.equals(Intent.ACTION_POWER_CONNECTED))
+                    RingBatteryWidgetProvider.fireUpdateNowWithExtra(context, true);
+                else if(action.equals(Intent.ACTION_POWER_DISCONNECTED))
+                    RingBatteryWidgetProvider.fireUpdateNowWithExtra(context, true);
+                else if(action.equals(Intent.ACTION_BATTERY_CHANGED))
+                    RingBatteryWidgetProvider.fireUpdateNow(context);
+                else
+                    Log.e("WIDGET", "Intent not supported: " + action);
+            }
+     
+        };
+        
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(Intent.ACTION_SCREEN_ON);
+        filter.addAction(Intent.ACTION_SCREEN_OFF);
+        filter.addAction(Intent.ACTION_USER_PRESENT);
+        
+        filter.addAction(Intent.ACTION_POWER_CONNECTED);
+        filter.addAction(Intent.ACTION_POWER_DISCONNECTED);
+//        filter.addAction(Intent.ACTION_BATTERY_CHANGED);
+        
+        registerReceiver(updateReceiver, filter);
+    }
+    
 }

@@ -13,17 +13,17 @@
         
         
         <receiver android:name="mcnulty.apps.batterywidget.RingBatteryWidgetProvider" >
-		    <intent-filter>
-			    <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-			    <action android:name="android.appwidget.action.APPWIDGET_ENABLED" />
-			    <action android:name="android.appwidget.action.APPWIDGET_DELETED" />
-			    <action android:name="android.appwidget.action.APPWIDGET_DISABLED" />  
-		        <action android:name="mcnulty.apps.batterywidget.UPDATE" />
-		    </intent-filter>
-		    <meta-data android:name="android.appwidget.provider"
-		               android:resource="@xml/battery_widget_info" />
-		</receiver>
-		
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.appwidget.action.APPWIDGET_ENABLED" />
+                <action android:name="android.appwidget.action.APPWIDGET_DELETED" />
+                <action android:name="android.appwidget.action.APPWIDGET_DISABLED" />  
+                <action android:name="mcnulty.apps.batterywidget.UPDATE" />
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider"
+                       android:resource="@xml/battery_widget_info" />
+        </receiver>
+        
         <service android:name="mcnulty.apps.batterywidget.BatteryService" />
     </application>
 
