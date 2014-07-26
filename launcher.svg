@@ -14,10 +14,10 @@
    id="svg2985"
    version="1.1"
    inkscape:version="0.48.4 r9939"
-   sodipodi:docname="drawing.svg"
-   inkscape:export-filename="/home/ryan/dev/BatteryWidget/res/drawable-xhdpi/ic_launcher.png"
-   inkscape:export-xdpi="480"
-   inkscape:export-ydpi="480">
+   sodipodi:docname="launcher.svg"
+   inkscape:export-filename="/home/ryan/dev/BatteryWidget/release/graphic_store.png"
+   inkscape:export-xdpi="937.5"
+   inkscape:export-ydpi="937.5">
   <defs
      id="defs2987" />
   <sodipodi:namedview
@@ -27,8 +27,8 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1"
-     inkscape:cx="-1.2857143"
+     inkscape:zoom="18.9375"
+     inkscape:cx="24"
      inkscape:cy="24"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -59,11 +59,11 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer">
     <rect
-       style="opacity:0.65;fill:#21a100;fill-opacity:1"
+       style="opacity:0.65000000000000002;fill:#33a900;fill-opacity:1"
        id="rect3830"
        width="48.142857"
        height="48.285713"
-       x="-0.14285564"
+       x="-0.14285551"
        y="-7.1054274e-15" />
     <path
        style="fill:#ececec;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
