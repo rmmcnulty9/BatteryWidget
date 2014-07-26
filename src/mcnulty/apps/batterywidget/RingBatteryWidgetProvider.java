@@ -26,7 +26,6 @@ public class RingBatteryWidgetProvider extends AppWidgetProvider {
     
     @Override
     public void onEnabled(Context context) {
-        Log.w("WIDGET", "Enabled widget");
         
         context.startService(new Intent(context, BatteryService.class));
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
@@ -39,13 +38,11 @@ public class RingBatteryWidgetProvider extends AppWidgetProvider {
 
     @Override
     public void onDeleted(Context context, int[] appWidgetIds) {
-        Log.w("WIDGET", "Deleted widget");
         super.onDeleted(context, appWidgetIds);
     }
 
     @Override
     public void onDisabled(Context context) {
-        Log.w("WIDGET", "Disabled widget");
         context.stopService(new Intent(context, BatteryService.class));
         toggleAlarm(context, false);
         super.onDisabled(context);
@@ -84,18 +81,18 @@ public class RingBatteryWidgetProvider extends AppWidgetProvider {
         int status = batteryIntent.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
 
         m_showCharging = BatteryManager.BATTERY_STATUS_CHARGING == status ? true : false;
-        
-        Log.e("WIDGET", "UPDATE --> " + m_level + " " + m_showCharging);
     }
     
     public void updateWidget(Context context, AppWidgetManager appWidgetManager, int widgetId ) {
-        Log.w("WIDGET", "Updating widget now... " + m_level + " " + m_showCharging);
         RemoteViews view = new RemoteViews(context.getPackageName(), R.layout.battery_widget_ring_layout);
+
         //Update percentage
         view.setTextViewText(R.id.value, m_level + "%");
+
         //Update background
         int resourceId = getDrawableResourceId(m_level);
         view.setImageViewResource(R.id.box_value, resourceId);
+
         //Update charging indicator
         int state = View.INVISIBLE;
         if(m_showCharging)
@@ -114,7 +111,6 @@ public class RingBatteryWidgetProvider extends AppWidgetProvider {
         intent.putExtra(UPDATE_EXTRA, extra_value);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
         alarmManager.set(AlarmManager.ELAPSED_REALTIME, 0, pendingIntent);
-        Log.w("WIDGET","Fire Now");
     }
     
     public static void fireUpdateNow(Context context) {
@@ -122,7 +118,6 @@ public class RingBatteryWidgetProvider extends AppWidgetProvider {
         Intent intent = new Intent(UPDATE);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
         alarmManager.set(AlarmManager.ELAPSED_REALTIME, 0, pendingIntent);
-        Log.w("WIDGET","Fire Now");
     }
     
     public static void toggleAlarm(Context context, boolean turnOn) {
@@ -132,10 +127,8 @@ public class RingBatteryWidgetProvider extends AppWidgetProvider {
         fireUpdateNow(context);
         if (turnOn) { // Add extra 1 sec because sometimes ACTION_BATTERY_CHANGED is called after the first alarm
             alarmManager.setInexactRepeating(AlarmManager.ELAPSED_REALTIME, SystemClock.elapsedRealtime() + 1000, 300 * 1000, pendingIntent);
-            Log.w("WIDGET","Alarm set");
         } else {
             alarmManager.cancel(pendingIntent);
-            Log.w("WIDGET","Alarm disabled");
         }
     }
     

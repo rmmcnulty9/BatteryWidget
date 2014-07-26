@@ -19,7 +19,6 @@ public class BatteryService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.w("WIDGET", "Starting Battery Service!");
         registerReceivers();
         return super.onStartCommand(intent, flags, startId);
     }
@@ -36,9 +35,6 @@ public class BatteryService extends Service {
             public void onReceive(Context context, Intent intent) {
                 String action = intent.getAction();
                 
-                Log.w("WIDGET", intent.getAction());
-                // Notifier.notify(context, action);
-                
                 if(action.equals(Intent.ACTION_SCREEN_ON) || action.equals(Intent.ACTION_USER_PRESENT))
                     RingBatteryWidgetProvider.toggleAlarm(context, true);
                 else if(action.equals(Intent.ACTION_SCREEN_OFF))
@@ -49,8 +45,6 @@ public class BatteryService extends Service {
                     RingBatteryWidgetProvider.fireUpdateNowWithExtra(context, true);
                 else if(action.equals(Intent.ACTION_BATTERY_CHANGED))
                     RingBatteryWidgetProvider.fireUpdateNow(context);
-                else
-                    Log.e("WIDGET", "Intent not supported: " + action);
             }
      
         };
@@ -62,7 +56,6 @@ public class BatteryService extends Service {
         
         filter.addAction(Intent.ACTION_POWER_CONNECTED);
         filter.addAction(Intent.ACTION_POWER_DISCONNECTED);
-//        filter.addAction(Intent.ACTION_BATTERY_CHANGED);
         
         registerReceiver(updateReceiver, filter);
     }
