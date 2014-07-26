@@ -4,6 +4,6 @@
     android:minHeight="40dp"
     android:updatePeriodMillis="100"
     android:previewImage="@drawable/ic_launcher"
-    android:initialLayout="@layout/battery_widget_layout"
+    android:initialLayout="@layout/battery_widget_box_layout"
     android:resizeMode="horizontal|vertical">
 </appwidget-provider>

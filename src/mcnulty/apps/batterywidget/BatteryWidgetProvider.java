@@ -87,7 +87,7 @@ public class BatteryWidgetProvider extends AppWidgetProvider {
 	
 	public void updateWidget(Context context, AppWidgetManager appWidgetManager, int widgetId ) {
 		Log.w("WIDGET", "Updating widget now... " + m_level + " " + m_showCharging);
-        RemoteViews view = new RemoteViews(context.getPackageName(), R.layout.battery_widget_layout);
+        RemoteViews view = new RemoteViews(context.getPackageName(), R.layout.battery_widget_box_layout);
         //Update percentage
         view.setTextViewText(R.id.value, m_level + "%");
         //Update background
