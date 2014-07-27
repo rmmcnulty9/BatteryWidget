@@ -85,13 +85,12 @@ public class RingBatteryWidgetProvider extends AppWidgetProvider {
     
     public void updateWidget(Context context, AppWidgetManager appWidgetManager, int widgetId ) {
         RemoteViews view = new RemoteViews(context.getPackageName(), R.layout.battery_widget_ring_layout);
-
         //Update percentage
         view.setTextViewText(R.id.value, m_level + "%");
 
         //Update background
         int resourceId = getDrawableResourceId(m_level);
-        view.setImageViewResource(R.id.box_value, resourceId);
+        view.setImageViewResource(R.id.ring_value, resourceId);
 
         //Update charging indicator
         int state = View.INVISIBLE;
